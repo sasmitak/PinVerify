@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Verification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+        var Pincode = "445566";
+        var maxAttempt = 3;
+        function VerifyPin() {
+            var pin = document.getElementById("lstPin").value;
+            if (Pincode === pin) {
+                document.write("Your Pin Is Verified...")
+            } else {
+                maxAttempt--;
+                document.getElementById("txtMessage").innerHTML = `Entered Pin Is Wrong <br> You have ${maxAttempt} Attempts left.`;
+                if (maxAttempt == 0) {
+                    document.getElementById("txtMessage").innerHTML = "Blocked".fontcolor('red');
+                    document.getElementById("lstButton").disabled = "true";
+                }
+            }
+        }
+    </script>
+    <style>
+        h3 {
+            text-align: center;
+            padding-left: 70px;
+        }
+
+        button {
+            width: 200px;
+            margin-top: 40px;
+        }
+        p{
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+    <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+        <div class="bg-dark p-4 text-white border mt-4" style="height: 300px; width: 400px;">
+            <label class="form-label">
+                <h3>Enter Your PIN</h3>
+            </label>
+            <div>
+                <input type="password" class="form-control" id="lstPin">
+                <p align="center" id="txtMessage"></p>
+            </div>
+            <div class="mt-4 text-center">
+                <button onclick="VerifyPin()" class="btn btn-danger" id="lstButton"><b>Verify</b></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
